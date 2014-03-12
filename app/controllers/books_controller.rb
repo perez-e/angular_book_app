@@ -14,5 +14,13 @@ class BooksController < ApplicationController
     render layout: false
   end
 
+  def create
+    book_params = params[:book].permit(:title, :description)
+    book = Book.create(book_params)
+
+    respond_to do |f|
+      f.json {render json: book}
+    end
+  end
 
 end
