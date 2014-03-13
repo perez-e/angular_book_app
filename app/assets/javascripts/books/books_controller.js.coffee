@@ -18,4 +18,18 @@ BookAppCtrls.controller("BooksCtrl", ["$scope", "$routeParams", "$http",
           $scope.fakeBooks = $scope.fakeBooks.concat response 
           console.log($scope.fakeBooks)
 
+
+        $scope.saveBook = ->
+          $http(
+              method: "post"
+              url: "/books.json"
+              data:
+                book: $scope.newBook
+                
+              ).success (response) ->
+                  $scope.fakeBooks = $scope.fakeBooks.concat response
+                  return
+
+          return
+
 ])
